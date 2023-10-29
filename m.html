@@ -6,9 +6,12 @@
     </title>
     <link rel="stylesheet" href="decorat.css" >
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script>
-	$(document).ready(function() {
-    $.getJSON("https://puzzle.qieee.top/api/rank", function(data) {
+	$(document).ready(function() 
+    {
+    $.getJSON("https://puzzle.qieee.top/api/rank", function(data) 
+    {
     var i = 0;
     var table = $("<table></table>");
     var headerRow = $("<tr></tr>");
@@ -21,39 +24,53 @@
     headerRow.append("<th>Level_3</th>");
     headerRow.append("<th>Score</th>");
     table.append(headerRow);
-    $.each(data, function(index, item) {
+    $.each(data, function(index, item) 
+    {
       var sum = 0;
-      $.each(item.score, function(index, score) {
+      $.each
+      (item.score, function(index, score) 
+      {
         sum += score.score;
-      });
+      }
+      );
       item.sum_score = sum;
-    });
-    data.sort(function(a, b) {
+    }
+    );
+    data.sort
+    (function(a, b) 
+    {
       return b.sum_score - a.sum_score;
-    });
-    $.each(data, function(index, item) {
+    }
+    );
+    $.each
+    (data, function(index, item) 
+    {
       i++;
       var row = $("<tr></tr>");
       row.append("<td>" + i + "</td>")
       row.append("<td>" + item.name + "</td>");
       row.append("<td>" + item.id + "</td>");
-      $.each(item.score, function(index, score) {
-        if(score.score === 10)
-        {
-            score.score class     
-        }
-        row.append("<td>" + score.score + "</td>");
-      });
+      $.each
+      (item.score, function(index, score)
+      {
+        var cellClass = score.score === 10 ? "passed" : "not_passed";
+        row.append("<td class='" + cellClass + "'>" + score.score + "</td>");
+      }
+      );
       row.append("<td>" + item.sum_score + "</td>")
       table.append(row);
-    });
+    }
+    );
     $("#table-container").append(table);
-  });
-});
+  }
+  );
+}
+);
 	</script>
 </head>
 <body>
     <h1>网页题排行榜</h1>
+    <button onclick="location.reload()" class="shang">刷新</button>;
     <table style="table-layout: auto;" id="table-container">
         <thead>
         </thead>
@@ -62,6 +79,52 @@
         </tbody>
 
     </table>
+    <canvas id="myChart"></canvas>
+    <div id="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
 
 </body>
 </html>
+<script>
+var tableData = [];
+$("#table-container tbody tr").each(function() {
+    var rowData = [];
+    $(this).find('td').each(function() {
+        rowData.push($(this).text());
+    });
+    tableData.push(rowData);
+});
+
+
+var rankings = [];
+var scores = [];
+for (var i = 0; i < tableData.length; i++) {
+    rankings.push(tableData[i][0]);
+    scores.push(tableData[i][7]);
+}
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: rankings,
+        datasets: [{
+            label: '分数',
+            data: scores,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
