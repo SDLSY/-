@@ -1,1 +1,43 @@
-
+h1 
+{
+    font-size: 48px;
+    color: #333;
+    text-align: center;
+    text-shadow: 2px 2px 4px #aaa;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+table
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+th
+{
+    text-align: center;
+    padding: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    border-bottom: 2px;
+    background-color: beige;
+}
+td 
+{
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    border: 1px solid black;
+}
+.passed
+{
+    color: green;
+}
+.not_passed
+{
+    color: red;
+}
+.first_passed
+{
+    color: springgreen;
+}
