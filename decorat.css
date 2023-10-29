@@ -14,13 +14,14 @@ table
 }
 th
 {
-    text-align: center;
-    padding: 40px;
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-    border-bottom: 2px;
-    background-color: beige;
+    color: #333; 
+    font-family: Arial, sans-serif; 
+    font-size: 32px; 
+    font-weight: bold; 
+    border: 1px solid #ccc; 
+    padding: 32px; 
+    text-align: center; 
+    vertical-align: middle; 
 }
 td 
 {
@@ -31,7 +32,7 @@ td
 }
 .passed
 {
-    color: green;
+    color: springgreen;
 }
 .not_passed
 {
@@ -39,5 +40,11 @@ td
 }
 .first_passed
 {
-    color: springgreen;
+    color: green;
+}
+
+body
+{
+    background-image: url(img/pic1.jpg);
+    background-size: cover;
 }

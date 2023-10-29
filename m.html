@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+        网页题排行榜
+    </title>
+    <link rel="stylesheet" href="decorat.css" >
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	$(document).ready(function() {
+    $.getJSON("https://puzzle.qieee.top/api/rank", function(data) {
+    var i = 0;
+    var table = $("<table></table>");
+    var headerRow = $("<tr></tr>");
+    headerRow.append("<th>排名</th>")
+    headerRow.append("<th>姓名</th>");
+    headerRow.append("<th>ID</th>");
+    headerRow.append("<th>Level_0</th>");
+    headerRow.append("<th>Level_1</th>");
+    headerRow.append("<th>Level_2</th>");
+    headerRow.append("<th>Level_3</th>");
+    headerRow.append("<th>Score</th>");
+    table.append(headerRow);
+    $.each(data, function(index, item) {
+      var sum = 0;
+      $.each(item.score, function(index, score) {
+        sum += score.score;
+      });
+      item.sum_score = sum;
+    });
+    data.sort(function(a, b) {
+      return b.sum_score - a.sum_score;
+    });
+    $.each(data, function(index, item) {
+      i++;
+      var row = $("<tr></tr>");
+      row.append("<td>" + i + "</td>")
+      row.append("<td>" + item.name + "</td>");
+      row.append("<td>" + item.id + "</td>");
+      $.each(item.score, function(index, score) {
+        if(score.score === 10)
+        {
+            score.score class     
+        }
+        row.append("<td>" + score.score + "</td>");
+      });
+      row.append("<td>" + item.sum_score + "</td>")
+      table.append(row);
+    });
+    $("#table-container").append(table);
+  });
+});
+	</script>
+</head>
+<body>
+    <h1>网页题排行榜</h1>
+    <table style="table-layout: auto;" id="table-container">
+        <thead>
+        </thead>
+        <tbody id="getinformation" style="text-align: center;" >
+
+        </tbody>
+
+    </table>
+
+</body>
+</html>
