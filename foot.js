@@ -9,6 +9,7 @@ $(document).ready(function()
     var i = 0;
     var table = $("<table></table>");
     var headerRow = $("<tr></tr>");
+    table.append(headerRow);
     headerRow.append("<th>排名</th>");
     headerRow.append("<th>姓名</th>");
     headerRow.append("<th>ID</th>");
@@ -17,7 +18,6 @@ $(document).ready(function()
     headerRow.append("<th>Level_2</th>");
     headerRow.append("<th>Level_3</th>");
     headerRow.append("<th>Score</th>");
-    table.append(headerRow);
     $.each(data, function(index, item) 
     {
       var sum = 0;
@@ -29,12 +29,14 @@ $(document).ready(function()
       item.sum_score = sum;
     }
     );
+    //排序
     data.sort
     (function(a, b) 
     {
       return b.sum_score - a.sum_score;
     }
     );
+    
     $.each
     (data, function(index, item) 
     {
@@ -68,8 +70,9 @@ $(document).ready(function()
     }
     );
     $("#table-container").append(table);
+    //数据分析——饼状图
     var ctx = document.getElementById('yi').getContext('2d');
-    var data = {
+    var pie_date = {
     labels: ['level0', 'level1', 'level2', 'level3'],
     datasets: [{
         data: [Level0,Level1,Level2,Level3],
@@ -79,7 +82,7 @@ $(document).ready(function()
 
     var piels = new Chart(ctx, {
     type: 'pie',
-    data: data,
+    data: pie_date,
   });
   }
   );

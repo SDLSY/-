@@ -1,8 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 h1 ,h2
 {
     font-size: 48px;
@@ -20,8 +15,9 @@ table
 th
 {
     color: #333; 
-    font-family: Arial, sans-serif; 
+    font-family: Arial; 
     font-size: 32px; 
+    text-shadow: 2px 2px 4px #aaa;
     font-weight: bold; 
     border: 1px solid #ccc; 
     padding: 32px; 
@@ -43,6 +39,7 @@ td
 {
     color: red;
 }
+
 .first_passed
 {
     color: green;
@@ -55,7 +52,6 @@ td
     border: none; 
     color: white; 
     padding: 12px 24px; 
-    text-align: center; 
     text-decoration: none; 
     display: inline-block; 
     font-size: 16px; 
